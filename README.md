@@ -1,74 +1,67 @@
-# React + TypeScript + Vite
+# Service Status Dashboard (React + TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains a small training project built to practice modern
+front-end development with **React**, **TypeScript**, **Vite**, **ESLint**, and **Prettier**.
 
-Currently, two official plugins are available:
+The goal of this project is not to build a production-ready application,  
+but to simulate a **realistic technical exercise** similar to those used in
+high-level engineering interviews (e.g., Canonical-style assessments).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Purpose of the Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project was created as a structured environment to:
 
-## Expanding the ESLint configuration
+- Practice clean React architecture using components, hooks and TypeScript.
+- Simulate real-world requirements such as:
+  - data fetching (mocked),
+  - filtering,
+  - sorting,
+  - search,
+  - error and loading states,
+  - accessibility considerations.
+- Improve React problem-solving and state management skills.
+- Develop consistent coding habits through:
+  - strict ESLint rules,
+  - automatic formatting via Prettier,
+  - proper project structure with Vite.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+It serves as a **personal learning dojo** to sharpen front-end technical skills and prepare for advanced technical assessments.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧩 Features Implemented
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Mock API for service status retrieval
+- Filter by status (Healthy, Degraded, Down)
+- Text search combined with filter
+- Sorting by name, status, or last update
+- Structured component architecture
+- Error & retry handling
+- Loading skeleton or placeholder
+- Accessibility-conscious UI elements
+- Clean and typed codebase (TypeScript)
+
+---
+
+## 🛠️ Tech Stack
+
+- **React 18**
+- **TypeScript**
+- **Vite**
+- **ESLint** (with TypeScript + React rules)
+- **Prettier**
+- **CSS Modules / Tailwind / vanilla CSS** (depending on your choice)
+
+---
+
+## 📦 Scripts
+
+```bash
+npm install       # Install dependencies
+npm run dev       # Start development server (Vite)
+npm run build     # Production build
+npm run preview   # Preview production build
+npm run lint      # Lint the codebase
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# service-dashboard
