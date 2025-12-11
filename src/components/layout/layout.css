@@ -1,6 +1,9 @@
 .layout {
 }
 
-.layout__container {
+.layout__main {
+}
+
+.layout__main--container {
   background-color: red;
 }

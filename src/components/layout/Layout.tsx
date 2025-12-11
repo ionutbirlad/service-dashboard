@@ -7,13 +7,13 @@ import './layout.css';
 
 function Layout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <div className="layout">
       <Header />
-      <main className="layout">
-        <div className="layout__container">{children}</div>
+      <main className="layout__main">
+        <div className="layout__main--container">{children}</div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
