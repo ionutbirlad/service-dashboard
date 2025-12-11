@@ -1,4 +1,4 @@
-type ServiceStatus = 'healthy' | 'degrated' | 'down';
+export type ServiceStatus = 'healthy' | 'degraded' | 'down';
 
 export type Service = {
   id: string;
