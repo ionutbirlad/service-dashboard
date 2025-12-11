@@ -19,7 +19,7 @@ function App() {
   return (
     <ul>
       {data?.map((service: Service) => (
-        <li>{service.id}</li>
+        <li key={service.id}>{service.id}</li>
       ))}
     </ul>
   );
