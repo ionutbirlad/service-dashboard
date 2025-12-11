@@ -1,12 +1,12 @@
-import { type Service } from '../../types/Service';
+import { type ServiceStatus } from '../../types/Service';
 import { type ApiResponse, type FetchStatus } from '../../types/ApiResponse';
-import services from '../../data/services';
+import filters from '../../data/filters';
 
-const fetchServices = (status: FetchStatus): Promise<ApiResponse<Service[] | string>> => {
+const fetchFilters = (status: FetchStatus): Promise<ApiResponse<ServiceStatus[] | string>> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (status === '200') {
-        resolve({ status: 'ok', body: services });
+        resolve({ status: 'ok', body: filters });
       } else {
         reject({ status: 'bad', body: 'something went wrong' });
       }
@@ -14,4 +14,4 @@ const fetchServices = (status: FetchStatus): Promise<ApiResponse<Service[] | str
   });
 };
 
-export default fetchServices;
+export default fetchFilters;
