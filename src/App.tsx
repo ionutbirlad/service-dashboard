@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import Layout from './components/layout/Layout';
+
 import { type Service } from './types/Service';
 import fetchServices from './utils/endpoints/services';
 
@@ -17,11 +19,13 @@ function App() {
   }, []);
 
   return (
-    <ul>
-      {data?.map((service: Service) => (
-        <li key={service.id}>{service.id}</li>
-      ))}
-    </ul>
+    <Layout>
+      <ul>
+        {data?.map((service: Service) => (
+          <li key={service.id}>{service.id}</li>
+        ))}
+      </ul>
+    </Layout>
   );
 }
 
