@@ -1,30 +1,10 @@
-import { useState, useEffect } from 'react';
-
 import Layout from './components/layout/Layout';
-
-import { type Service } from './types/Service';
-import fetchServices from './utils/endpoints/services';
+import Dashboard from './components/dashboard/Dashboard';
 
 function App() {
-  const [data, setData] = useState<Service[] | string>();
-
-  useEffect(() => {
-    fetchServices('200')
-      .then((res) => {
-        setData(res.body);
-      })
-      .catch((err) => {
-        setData(err);
-      });
-  }, []);
-
   return (
     <Layout>
-      <ul>
-        {data?.map((service: Service) => (
-          <li key={service.id}>{service.id}</li>
-        ))}
-      </ul>
+      <Dashboard />
     </Layout>
   );
 }
