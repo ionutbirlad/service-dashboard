@@ -2,7 +2,7 @@ import { type ServiceStatus } from '../../types/Service';
 import { type ApiResponse, type FetchStatus } from '../../types/ApiResponse';
 import filters from '../../data/filters';
 
-const fetchFilters = (status: FetchStatus): Promise<ApiResponse<ServiceStatus[] | string>> => {
+const fetchFilters = (status: FetchStatus): Promise<ApiResponse<ServiceStatus[]>> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (status === '200') {

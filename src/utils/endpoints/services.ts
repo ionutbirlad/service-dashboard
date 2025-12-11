@@ -2,7 +2,7 @@ import { type Service } from '../../types/Service';
 import { type ApiResponse, type FetchStatus } from '../../types/ApiResponse';
 import services from '../../data/services';
 
-const fetchServices = (status: FetchStatus): Promise<ApiResponse<Service[] | string>> => {
+const fetchServices = (status: FetchStatus): Promise<ApiResponse<Service[]>> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (status === '200') {

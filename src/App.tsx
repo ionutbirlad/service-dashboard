@@ -1,10 +1,10 @@
 import Layout from './components/layout/Layout';
-import Dashboard from './components/dashboard/Dashboard';
+import ServiceDashboard from './components/service-dashboard/ServiceDashboard';
 
 function App() {
   return (
     <Layout>
-      <Dashboard />
+      <ServiceDashboard />
     </Layout>
   );
 }

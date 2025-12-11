@@ -13,7 +13,6 @@
 }
 
 .layout__main--container {
-  background-color: red;
   width: 100%;
   max-width: var(--page-max-width);
 }
