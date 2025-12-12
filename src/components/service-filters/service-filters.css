@@ -1,0 +1,15 @@
+.service-filters {
+  margin-bottom: 3rem;
+}
+
+.service-filters__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-filters__selects {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

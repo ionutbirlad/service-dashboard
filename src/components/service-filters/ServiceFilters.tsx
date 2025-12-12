@@ -6,12 +6,33 @@ function ServiceFilters({ filters }: { filters: ServiceStatus[] }) {
   return (
     <div className="service-filters">
       <div className="service-filters__inner">
-        FILTERS HERE <br />
-        {filters.map((filter) => (
-          <>
-            <span key={filter}>{filter}</span> <br />
-          </>
-        ))}
+        <div className="service-filters__selects">
+          <div className="service-filters__selects--status-filter">
+            <label htmlFor="status-select">Status filter:</label>
+
+            <select name="statuses" id="status-select">
+              <option value="all">All</option>
+              {filters.map((filter) => (
+                <option value={filter}>{filter}</option>
+              ))}
+            </select>
+          </div>
+          <div className="service-filters__selects--sort-by">
+            <label htmlFor="orderby-select">Order by:</label>
+
+            <select name="orderby-options" id="orderby-select">
+              <option value="all">Name</option>
+              <option value="dog">Status</option>
+              <option value="cat">Last updated</option>
+            </select>
+          </div>
+        </div>
+        <div className="service-filters__search">
+          <div className="service-filters__search-input">
+            <label htmlFor="services-search">Search services:</label>
+            <input type="search" id="services-search" name="q" />
+          </div>
+        </div>
       </div>
     </div>
   );
