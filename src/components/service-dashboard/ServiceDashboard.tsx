@@ -47,6 +47,10 @@ function ServiceDashboard() {
     };
   }, []);
 
+  const onFilterChange = (value: string) => {
+    console.log(value);
+  };
+
   if (loading) {
     return (
       <div className="dashboard__fullpage-loader">
@@ -68,7 +72,7 @@ function ServiceDashboard() {
   return (
     <div className="dashboard">
       <main className="dashboard__inner">
-        <ServiceFilters filters={filters} />
+        <ServiceFilters filters={filters} onFilterChange={onFilterChange} />
         <ServiceList services={services} />
       </main>
     </div>

@@ -2,7 +2,16 @@ import { type ServiceStatus } from '../../types/Service';
 
 import './service-filters.css';
 
-function ServiceFilters({ filters }: { filters: ServiceStatus[] }) {
+type ServiceFiltersProps = {
+  filters: ServiceStatus[];
+  onFilterChange: (value: string) => void;
+};
+
+function ServiceFilters({ filters, onFilterChange }: ServiceFiltersProps) {
+  const handleStatusFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onFilterChange(e.target.value.toLocaleLowerCase());
+  };
+
   return (
     <div className="service-filters">
       <div className="service-filters__inner">
@@ -10,7 +19,7 @@ function ServiceFilters({ filters }: { filters: ServiceStatus[] }) {
           <div className="service-filters__selects--status-filter">
             <label htmlFor="status-select">Status filter:</label>
 
-            <select name="statuses" id="status-select">
+            <select name="statuses" id="status-select" onChange={handleStatusFilterChange}>
               <option value="all">All</option>
               {filters.map((filter) => (
                 <option value={filter}>{filter}</option>
