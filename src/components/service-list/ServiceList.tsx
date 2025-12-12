@@ -8,7 +8,7 @@ function ServiceList({ services }: { services: Service[] }) {
   return (
     <div className="service-list">
       <div className="service-list__container">
-        <table className="service-table">
+        <table className="service-list__table">
           <thead>
             <tr>
               <th>Name</th>
