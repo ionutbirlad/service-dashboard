@@ -11,7 +11,7 @@ import ServiceList from '../service-list/ServiceList';
 
 function ServiceDashboard() {
   const [filters, setFilters] = useState<ServiceStatus[]>([]);
-  const [data, setData] = useState<Service[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
 
   useEffect(() => {
     fetchFilters('200')
@@ -26,7 +26,7 @@ function ServiceDashboard() {
   useEffect(() => {
     fetchServices('200')
       .then((res) => {
-        setData(res.body);
+        setServices(res.body);
       })
       .catch((err) => {
         console.error(err);
@@ -37,7 +37,7 @@ function ServiceDashboard() {
     <div className="dashboard">
       <main className="dashboard__inner">
         <ServiceFilters filters={filters} />
-        <ServiceList services={data} />
+        <ServiceList services={services} />
       </main>
     </div>
   );
