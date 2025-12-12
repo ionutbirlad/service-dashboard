@@ -12,33 +12,35 @@ import ServiceList from '../service-list/ServiceList';
 function ServiceDashboard() {
   const [filters, setFilters] = useState<ServiceStatus[]>([]);
   const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let ignore = false;
 
-    fetchFilters('200')
-      .then((res) => {
-        if (!ignore) setFilters(res.body);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    async function load() {
+      setLoading(true);
+      setError(null);
 
-    return () => {
-      ignore = true;
-    };
-  }, []);
+      try {
+        const [servicesRes, filtersRes] = await Promise.all([
+          fetchServices('200'),
+          fetchFilters('200'),
+        ]);
 
-  useEffect(() => {
-    let ignore = false;
+        if (ignore) return;
 
-    fetchServices('200')
-      .then((res) => {
-        if (!ignore) setServices(res.body);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+        setServices(servicesRes.body);
+        setFilters(filtersRes.body);
+      } catch (err) {
+        if (ignore) return;
+        setError(`Failed to load data: ${err}`);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+
+    load();
 
     return () => {
       ignore = true;
