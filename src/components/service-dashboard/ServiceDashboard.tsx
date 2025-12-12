@@ -14,23 +14,35 @@ function ServiceDashboard() {
   const [services, setServices] = useState<Service[]>([]);
 
   useEffect(() => {
+    let ignore = false;
+
     fetchFilters('200')
       .then((res) => {
-        setFilters(res.body);
+        if (!ignore) setFilters(res.body);
       })
       .catch((err) => {
         console.error(err);
       });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   useEffect(() => {
+    let ignore = false;
+
     fetchServices('200')
       .then((res) => {
-        setServices(res.body);
+        if (!ignore) setServices(res.body);
       })
       .catch((err) => {
         console.error(err);
       });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   return (
