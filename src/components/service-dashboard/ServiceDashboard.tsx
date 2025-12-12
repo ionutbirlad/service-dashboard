@@ -47,6 +47,24 @@ function ServiceDashboard() {
     };
   }, []);
 
+  if (loading) {
+    return (
+      <div className="dashboard__fullpage-loader">
+        <div className="dashboard__fullpage-loader-spinner" />
+        <p>Loading dashboard…</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="dashboard__fullpage-error">
+        <p>{error}</p>
+        <button onClick={() => window.location.reload()}>Retry</button>
+      </div>
+    );
+  }
+
   return (
     <div className="dashboard">
       <main className="dashboard__inner">

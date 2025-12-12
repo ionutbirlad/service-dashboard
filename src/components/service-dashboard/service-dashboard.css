@@ -6,3 +6,22 @@
 
 .dashboard__inner {
 }
+
+/* Loading state */
+
+.dashboard__fullpage-loader,
+.dashboard__fullpage-error {
+  position: fixed;
+  inset: 0;
+  background-color: #00000060;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard__fullpage-error {
+  background-color: rgb(255, 107, 137);
+}
+
+.dashboard__fullpage-loader-spinner {
+}
