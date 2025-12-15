@@ -1,15 +1,25 @@
-import { type ServiceStatus } from '../../types/Service';
+import { SERVICE_STATUS_VALUES, type ServiceStatus } from '../../types/Service';
 
 import './service-filters.css';
 
 type ServiceFiltersProps = {
   filters: ServiceStatus[];
-  onFilterChange: (value: string) => void;
+  status: ServiceStatus | null;
+  onFilterChange: (value: ServiceStatus | null) => void;
 };
 
-function ServiceFilters({ filters, onFilterChange }: ServiceFiltersProps) {
+function isServiceStatus(v: string): v is ServiceStatus {
+  return (SERVICE_STATUS_VALUES as readonly string[]).includes(v);
+}
+
+function ServiceFilters({ filters, status, onFilterChange }: ServiceFiltersProps) {
   const handleStatusFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onFilterChange(e.target.value.toLocaleLowerCase());
+    const v = e.currentTarget.value;
+
+    if (v === '') return onFilterChange(null);
+    if (isServiceStatus(v)) return onFilterChange(v);
+
+    return onFilterChange(null);
   };
 
   return (
@@ -19,8 +29,13 @@ function ServiceFilters({ filters, onFilterChange }: ServiceFiltersProps) {
           <div className="service-filters__selects--status-filter">
             <label htmlFor="status-select">Status filter:</label>
 
-            <select name="statuses" id="status-select" onChange={handleStatusFilterChange}>
-              <option value="all">All</option>
+            <select
+              name="statuses"
+              id="status-select"
+              onChange={handleStatusFilterChange}
+              value={status ?? ''}
+            >
+              <option value="">All</option>
               {filters.map((filter) => (
                 <option value={filter}>{filter}</option>
               ))}

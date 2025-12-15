@@ -11,6 +11,7 @@ import ServiceList from '../service-list/ServiceList';
 
 function ServiceDashboard() {
   const [filters, setFilters] = useState<ServiceStatus[]>([]);
+  const [selectedFilter, setSelectedFilter] = useState<ServiceStatus | null>(null);
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -47,9 +48,12 @@ function ServiceDashboard() {
     };
   }, []);
 
-  const onFilterChange = (value: string) => {
-    console.log(value);
+  const onFilterChange = (value: ServiceStatus | null) => {
+    setSelectedFilter(value);
   };
+
+  const filteredServices =
+    selectedFilter === null ? services : services.filter((svc) => svc.status === selectedFilter);
 
   if (loading) {
     return (
@@ -72,8 +76,8 @@ function ServiceDashboard() {
   return (
     <div className="dashboard">
       <main className="dashboard__inner">
-        <ServiceFilters filters={filters} onFilterChange={onFilterChange} />
-        <ServiceList services={services} />
+        <ServiceFilters filters={filters} status={selectedFilter} onFilterChange={onFilterChange} />
+        <ServiceList services={filteredServices} />
       </main>
     </div>
   );

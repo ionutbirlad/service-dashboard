@@ -1,4 +1,5 @@
-export type ServiceStatus = 'healthy' | 'degraded' | 'down';
+export const SERVICE_STATUS_VALUES = ['healthy', 'degraded', 'down'] as const;
+export type ServiceStatus = (typeof SERVICE_STATUS_VALUES)[number];
 
 export type Service = {
   id: string;
