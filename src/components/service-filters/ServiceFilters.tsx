@@ -6,21 +6,35 @@ import './service-filters.css';
 type ServiceFiltersProps = {
   filters: ServiceStatus[];
   status: ServiceStatus | null;
-  onFilterChange: (value: ServiceStatus | null) => void;
+  onStatusFilterChange: (value: ServiceStatus | null) => void;
+  orderBy: OrderByFilterValue | null;
+  onOrderByChange: (value: OrderByFilterValue | null) => void;
 };
 
 function isServiceStatus(v: string): v is ServiceStatus {
   return (SERVICE_STATUS_VALUES as readonly string[]).includes(v);
 }
 
-function ServiceFilters({ filters, status, onFilterChange }: ServiceFiltersProps) {
+function ServiceFilters({
+  filters,
+  status,
+  onStatusFilterChange,
+  orderBy,
+  onOrderByChange,
+}: ServiceFiltersProps) {
   const handleStatusFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const v = e.currentTarget.value;
 
-    if (v === '') return onFilterChange(null);
-    if (isServiceStatus(v)) return onFilterChange(v);
+    if (v === '') return onStatusFilterChange(null);
+    if (isServiceStatus(v)) return onStatusFilterChange(v);
 
-    return onFilterChange(null);
+    return onStatusFilterChange(null);
+  };
+
+  const handleOrderByChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const v = e.currentTarget.value;
+
+    onOrderByChange(v);
   };
 
   return (
@@ -45,7 +59,12 @@ function ServiceFilters({ filters, status, onFilterChange }: ServiceFiltersProps
           <div className="service-filters__selects--sort-by">
             <label htmlFor="orderby-select">Order by:</label>
 
-            <select name="orderby-options" id="orderby-select">
+            <select
+              name="orderby-options"
+              id="orderby-select"
+              onChange={handleOrderByChange}
+              value={orderBy ?? ''}
+            >
               <option value="name">Name</option>
               <option value="status">Status</option>
               <option value="lastUpdated">Last updated</option>

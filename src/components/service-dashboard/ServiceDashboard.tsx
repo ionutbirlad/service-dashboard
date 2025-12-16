@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import './service-dashboard.css';
 
 import { type Service, type ServiceStatus } from '../../types/Service';
+import { type OrderByFilterValue } from '../../types/OrderByFilter';
 import fetchFilters from '../../utils/endpoints/filters';
 import fetchServices from '../../utils/endpoints/services';
 
@@ -12,6 +13,9 @@ import ServiceList from '../service-list/ServiceList';
 function ServiceDashboard() {
   const [filters, setFilters] = useState<ServiceStatus[]>([]);
   const [selectedStatusFilter, setSelectedStatusFilter] = useState<ServiceStatus | null>(null);
+  const [selectedOrderByOption, setSelectedOrderByOption] = useState<OrderByFilterValue | null>(
+    null,
+  );
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -48,8 +52,12 @@ function ServiceDashboard() {
     };
   }, []);
 
-  const onFilterChange = (value: ServiceStatus | null) => {
+  const onStatusFilterChange = (value: ServiceStatus | null) => {
     setSelectedStatusFilter(value);
+  };
+
+  const onOrderByChange = (value: OrderByFilterValue | null) => {
+    setSelectedOrderByOption(value);
   };
 
   const filteredServices =
@@ -81,7 +89,9 @@ function ServiceDashboard() {
         <ServiceFilters
           filters={filters}
           status={selectedStatusFilter}
-          onFilterChange={onFilterChange}
+          onStatusFilterChange={onStatusFilterChange}
+          orderBy={selectedOrderByOption}
+          onOrderByChange={onOrderByChange}
         />
         <ServiceList services={filteredServices} />
       </main>
