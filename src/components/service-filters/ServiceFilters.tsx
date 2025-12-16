@@ -1,4 +1,5 @@
 import { SERVICE_STATUS_VALUES, type ServiceStatus } from '../../types/Service';
+import { ORDER_BY_FILTER_VALUES, type OrderByFilterValue } from '../../types/OrderByFilter';
 
 import './service-filters.css';
 
@@ -45,9 +46,9 @@ function ServiceFilters({ filters, status, onFilterChange }: ServiceFiltersProps
             <label htmlFor="orderby-select">Order by:</label>
 
             <select name="orderby-options" id="orderby-select">
-              <option value="all">Name</option>
-              <option value="dog">Status</option>
-              <option value="cat">Last updated</option>
+              <option value="name">Name</option>
+              <option value="status">Status</option>
+              <option value="lastUpdated">Last updated</option>
             </select>
           </div>
         </div>
